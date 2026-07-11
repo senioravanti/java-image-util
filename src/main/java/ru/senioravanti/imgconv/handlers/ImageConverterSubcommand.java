@@ -58,14 +58,13 @@ public class ImageConverterSubcommand extends BaseSubcommandHandler {
         try {
             var image = ImageIO.read(inputPath.toFile());
             if (!ImageIO.write(image, formatName, outputPath.toFile())) {
-                System.err.printf("failed to convert image into format `%s`\n", formatName);
+                System.err.printf("Can't convert image into format `%s`\n", formatName);
                 return 1;
             }
-            System.out.printf("image `%s` successfully converted to `%s`\n", inputPath, outputPath);
+            System.out.printf("Image `%s` successfully converted to `%s`\n", inputPath, outputPath);
             return 0;
         } catch (IOException ex) {
-            LOGGER.error(
-                CustomMapMessage.of("failed to read image", Map.of("path", inputPath), ex));
+            LOGGER.error(CustomMapMessage.of("failed to read image", Map.of("path", inputPath), ex));
             return 1;
         }
     }

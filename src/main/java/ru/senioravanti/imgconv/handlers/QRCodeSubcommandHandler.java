@@ -1,5 +1,8 @@
 package ru.senioravanti.imgconv.handlers;
 
+import static ru.senioravanti.imgconv.utils.FileUtils.DEFAULT_CONTENT_TYPE;
+
+import java.util.Optional;
 import lombok.Getter;
 
 import com.google.zxing.BarcodeFormat;
@@ -34,6 +37,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 import ru.senioravanti.commons.loggers.CustomMapMessage;
+import ru.senioravanti.commons.result.Result;
 
 public class QRCodeSubcommandHandler extends BaseSubcommandHandler {
     private static final Logger LOGGER = LogManager.getLogger(QRCodeSubcommandHandler.class);
@@ -78,7 +82,8 @@ public class QRCodeSubcommandHandler extends BaseSubcommandHandler {
     }
 
     private BufferedImage readLogo(Path path, int size) throws IOException, TranscoderException {
-        if (!Files.probeContentType(path).equals("image/svg+xml")) {
+        var logoContentType = Files.probeContentType(path);
+        if (!logoContentType.equals("image/svg+xml")) {
             var source = ImageIO.read(path.toFile());
             if (source.getWidth() == size && source.getHeight() == size) return source;
             var scaled = new BufferedImage(size, size, BufferedImage.TYPE_INT_ARGB);
@@ -157,25 +162,25 @@ public class QRCodeSubcommandHandler extends BaseSubcommandHandler {
             }
             if (!ImageIO.write(qrImage, "png", outputPath.toFile())) {
                 LOGGER.error(CustomMapMessage.of("failed to write qrcode", Map.of("path", outputPath)));
-                System.err.printf("cannot write qrcode to `%s`\n", outputPath);
+                System.err.printf("Can't write qrcode to `%s`\n", outputPath);
                 return 1;
             }
             return 0;
         } catch (WriterException ex) {
             LOGGER.error(CustomMapMessage.of("failed to encode", Map.of("url", url), ex));
-            System.err.printf("cannot encode url `%s`\n", url);
+            System.err.printf("Can't encode url `%s`\n", url);
             return 1;
         } catch (IOException ex) {
             var params = new HashMap<String, Object>();
             params.put("logo", logoPath);
             LOGGER.error(CustomMapMessage.of("failed to read", params, ex));
-            System.err.printf("cannot read logo `%s`\n", logoPath);
+            System.err.printf("Can't read logo `%s`\n", logoPath);
             return 1;
         } catch (TranscoderException ex) {
             var params = new HashMap<String, Object>();
             params.put("logo", logoPath);
             LOGGER.error(CustomMapMessage.of("failed to transcode svg", params, ex));
-            System.err.printf("cannot transcode svg logo `%s`\n", logoPath);
+            System.err.printf("Can't transcode svg logo `%s`\n", logoPath);
             return 1;
         }
     }

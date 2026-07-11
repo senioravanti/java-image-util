@@ -23,8 +23,12 @@
     <jackson.version>3.2.0</jackson.version>
     <imageio.version>3.13.1</imageio.version>
     <junit.version>6.1.1</junit.version>
-    <batik.version>1.19</batik.version>
-    <zxing.version>3.5.4</zxing.version>
+
+    <google.zxing.version>3.5.4</google.zxing.version>
+
+    <apache.batik.version>1.19</apache.batik.version>
+    <apache.pdfbox.version>3.0.7</apache.pdfbox.version>
+    <apache.tika.version>3.2.3</apache.tika.version>
 
     <maven-compiler-plugin.version>3.14.1</maven-compiler-plugin.version>
     <maven-shade-plugin.version>3.6.1</maven-shade-plugin.version>
@@ -89,12 +93,12 @@
     <dependency>
       <groupId>com.google.zxing</groupId>
       <artifactId>core</artifactId>
-      <version>${zxing.version}</version>
+      <version>${google.zxing.version}</version>
     </dependency>
     <dependency>
       <groupId>com.google.zxing</groupId>
       <artifactId>javase</artifactId>
-      <version>${zxing.version}</version>
+      <version>${google.zxing.version}</version>
     </dependency>
 
     <!-- ImageIO -->
@@ -126,7 +130,22 @@
     <dependency>
       <groupId>org.apache.xmlgraphics</groupId>
       <artifactId>batik-transcoder</artifactId>
-      <version>${batik.version}</version>
+      <version>${apache.batik.version}</version>
+    </dependency>
+
+    <!-- PDF -->
+    <!-- https://pdfbox.apache.org/3.0/getting-started.html -->
+    <dependency>
+      <groupId>org.apache.pdfbox</groupId>
+      <artifactId>pdfbox</artifactId>
+      <version>${apache.pdfbox.version}</version>
+    </dependency>
+
+    <!-- Tika -->
+    <dependency>
+      <groupId>org.apache.tika</groupId>
+      <artifactId>tika-core</artifactId>
+      <version>${apache.tika.version}</version>
     </dependency>
 
     <dependency>

@@ -7,13 +7,15 @@ import picocli.CommandLine.ParseResult;
 import java.util.List;
 
 import ru.senioravanti.imgconv.handlers.ImageConverterSubcommand;
+import ru.senioravanti.imgconv.handlers.PdfSubcommand;
 import ru.senioravanti.imgconv.handlers.QRCodeSubcommandHandler;
 import ru.senioravanti.imgconv.handlers.SubcommandHandler;
 
 public class App {
     private static final List<SubcommandHandler> HANDLERS = List.of(
         new QRCodeSubcommandHandler(),
-        new ImageConverterSubcommand()
+        new ImageConverterSubcommand(),
+        new PdfSubcommand()
     );
 
     private static CommandSpec build() {
