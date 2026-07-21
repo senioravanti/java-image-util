@@ -19,12 +19,6 @@ import ru.senioravanti.imgconv.utils.FileUtils;
 
 public class ImageConverterSubcommand extends BaseSubcommandHandler {
     private static final Logger LOGGER = LogManager.getLogger(ImageConverterSubcommand.class);
-    private static final String NAME = "conv";
-
-    @Override
-    public String getName() {
-        return NAME;
-    }
 
     @Override
     public CommandSpec register() {

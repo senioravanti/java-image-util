@@ -6,6 +6,5 @@ import static picocli.CommandLine.ParseResult;
 import java.util.function.Function;
 
 public interface SubcommandHandler extends Function<ParseResult, Integer> {
-    String getName();
     CommandSpec register();
 }

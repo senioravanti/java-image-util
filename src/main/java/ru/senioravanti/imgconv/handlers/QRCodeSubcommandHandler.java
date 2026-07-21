@@ -1,8 +1,5 @@
 package ru.senioravanti.imgconv.handlers;
 
-import static ru.senioravanti.imgconv.utils.FileUtils.DEFAULT_CONTENT_TYPE;
-
-import java.util.Optional;
 import lombok.Getter;
 
 import com.google.zxing.BarcodeFormat;
@@ -37,16 +34,9 @@ import java.util.Map;
 import java.util.HashMap;
 
 import ru.senioravanti.commons.loggers.CustomMapMessage;
-import ru.senioravanti.commons.result.Result;
 
 public class QRCodeSubcommandHandler extends BaseSubcommandHandler {
     private static final Logger LOGGER = LogManager.getLogger(QRCodeSubcommandHandler.class);
-    private static final String NAME = "qr";
-
-    @Override
-    public String getName() {
-        return NAME;
-    }
 
     @Override
     public CommandSpec register() {
